@@ -26,5 +26,5 @@
 ## Example
 
 
-(!Example)[https://segmentfault.com/img/bVyuek]
+![image](https://cloud.githubusercontent.com/assets/5822981/16376619/d11e5a12-3c93-11e6-9c5d-42d95b947ad7.png)
 
