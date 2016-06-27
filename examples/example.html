@@ -1,0 +1,332 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DragBox</title>
+
+	<style>
+
+		/**
+		 * html
+		 */
+		*, *:before, *:after {
+			margin: 0px;
+			position: 0px;
+			box-sizing: border-box;
+			-webkit-box-sizing: border-box;
+			-moz-box-sizing: border-box;
+		}
+
+		html,body {
+			font: 12px/1 "SimSun";
+			background-color: #ccc;
+			width: 1080px;
+			margin: 0px auto;
+		}
+
+		a {
+			text-decoration: none;
+			color: #eee;
+		}
+
+		/**
+		 * header
+		 */
+		.header {
+			background-color: #333;
+			line-height: 78px;
+			height: 78px;
+		}
+
+		.header .hl {
+			float: left;
+			position: relative;
+			left: 50px;
+			color: #eee;
+			font-size: 1.5em;
+		}
+
+		.header .hr {
+			float: right;
+			display: inline-block;
+			margin-right: 5px;
+		}
+
+		.header .hr > li {
+			display: inline-block;
+			list-style: none;
+			margin-right: 20px;
+			vertical-align: -18px;
+		}
+
+		.header .hr > li > a {
+			list-style: none;
+			color: #eee;
+			text-decoration: none;
+			vertical-align: middle;
+			margin-right: 10px;
+		}
+
+		.header .hr > li > a:hover {
+			color: #888;
+		}
+
+		.header .hr > li > span {
+			line-height: 0px;
+			font-size: 0px;
+		}
+
+		.icon-caret-down {
+			border: 4px solid transparent;
+			border-top: 4px solid #eee;
+			vertical-align: middle;
+			display: inline-block;
+		}
+
+		/**
+		 * container
+		 */
+		.container {
+			background-color: #eee;
+			padding: 50px;
+		}
+
+		.container .drag-box {
+			display: inline-block;
+			width: 180px;
+			height: 60px;
+			line-height: 60px;
+			background-color: #fff;
+			padding: 0px 30px 0px 15px;
+			margin: 10px 5px 10px;
+		}
+
+		.container .drag-box .fb-left {
+			display: inline-block;
+		}
+
+		.container .drag-box .fb-left .folder-img {
+			font-size: 0px;
+			line-height: 0px;
+			display: inline-block;
+			vertical-align: middle;
+		}
+
+		.container .drag-box .fb-left .folder-img > svg {
+			width: 100%;
+			max-width: 30px;
+			max-height: 30px;
+		}
+
+		.container .drag-box .fb-left > a {
+			font-family: "SimHei";
+			text-decoration: none;
+			vertical-align: middle;
+			color: #000;
+		}
+
+		.fb-right {
+			float: right;
+			font-size: 0px;
+		}
+
+		.dot-list {
+		}
+
+		.dot-list:hover {
+			cursor: move;
+		}
+
+		.dot-list div {
+			height: 5px;
+		}
+
+		.dot {
+			display: inline-block;
+			border: 2px solid gray;
+			border-radius: 2px;
+		}
+	</style>
+</head>
+<body>
+	<svg style="display: none;" version="1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+		<defs>
+			<symbol id="folder" viewBox="0 0 48 48" enable-background="new 0 0 48 48">
+				<path fill="#FFA000" d="M40,12H22l-4-4H8c-2.2,0-4,1.8-4,4v8h40v-4C44,13.8,42.2,12,40,12z"/>
+				<path fill="#FFCA28" d="M40,12H8c-2.2,0-4,1.8-4,4v20c0,2.2,1.8,4,4,4h32c2.2,0,4-1.8,4-4V16C44,13.8,42.2,12,40,12z"/>
+			</symbol>
+		</defs>
+	</svg>
+
+	<div class="header">
+		<div class="hl">
+			<a href="#" class="title">文件管理</a>
+		</div>
+		<ul class="hr">
+			<li><a href="#">搜索文件</a></li>
+			<li>
+				<a href="#">文件显示</a>
+				<span><i class="icon-caret-down"></i></span>
+			</li>
+			<li>
+				<a href="#">时间排序</a>
+				<span><i class="icon-caret-down"></i></span>
+			</li>
+		</ul>
+	</div>
+
+	<div class="container">
+		<div class="drag-box">
+			<div class="fb-left">
+				<div class="folder-img">
+					<svg><use width="30" width="30" xlink:href="#folder" /></svg>
+				</div>
+				<a href="#">文件夹</a>
+			</div>
+			<div class="fb-right drag-target">
+				<div class="dot-list">
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="drag-box">
+			<div class="fb-left">
+				<div class="folder-img">
+					<svg><use width="30" width="30" xlink:href="#folder" /></svg>
+				</div>
+				<a href="#">文件夹</a>
+			</div>
+			<div class="fb-right drag-target">
+				<div class="dot-list">
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="drag-box">
+			<div class="fb-left">
+				<div class="folder-img">
+					<svg><use width="30" width="30" xlink:href="#folder" /></svg>
+				</div>
+				<a href="#">文件夹</a>
+			</div>
+			<div class="fb-right drag-target">
+				<div class="dot-list">
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="drag-box">
+			<div class="fb-left">
+				<div class="folder-img">
+					<svg><use width="30" width="30" xlink:href="#folder" /></svg>
+				</div>
+				<a href="#">文件夹</a>
+			</div>
+			<div class="fb-right drag-target">
+				<div class="dot-list">
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+				</div>
+			</div>
+		</div>
+
+		<div class="drag-box">
+			<div class="fb-left">
+				<div class="folder-img">
+					<svg><use width="30" width="30" xlink:href="#folder" /></svg>
+				</div>
+				<a href="#">文件夹</a>
+			</div>
+			<div class="fb-right drag-target">
+				<div class="dot-list">
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+					<div><i class="dot"></i></div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+<!-- js 代码 -->
+
+	<script src="../lib/drag-0.1.js"></script>
+
+	<script>
+		window.onload = function() {
+
+			/**
+			 * 根据id或者类名获取元素
+			 * @param  {[type]} name [description]
+			 * @return {[type]}      [description]
+			 */
+			var $ = function(name) {
+
+				// 获取类名对应的元素list
+				var getElementsByClassName = function(classname, fromRootDom) {
+
+					if(document.getElementsByClassName) {
+						return document.getElementsByClassName(classname);
+					}
+
+					var doms = {},
+						elementList,
+						reg = new RegExp("\\b" + classname +"\\b", "g");
+
+					if(fromRootDom) {
+						doms = document.getElementsByTagName("*");
+					} else {
+						// default
+						doms = document.body.getElementsByTagName("*");
+					}
+
+					for (var i = 0; i < doms.length; i++) {
+						if(reg.test(doms[i].className)) {
+							elementList.push(doms[i]);
+						}
+					}
+
+					return elementList;
+				}
+
+				var classNameReg = /\s*\.([^\.]*)$/;
+				var idReg = /\s*#([^\.]*)$/;
+
+				// 去除空格
+				name = name.trim() || name.replace(/\s/g, "");
+
+				// 类名匹配，现在只支持一级类名，即支持$(".class1")，不支持$(".class1 .class2")
+				if(classNameReg.test(name)) {
+					var className = name.match(classNameReg)[1];
+					return getElementsByClassName(className);
+				}
+
+				// id匹配
+				if(idReg.test(name)) {
+					var id = name.match(idReg)[1];
+					return document.getElementById(id);
+				}
+			}
+
+
+			// var dragBox = document.getElementsByClassName("drag-box")[0];
+        	// var dragTarget = dragBox.getElementsByClassName("drag-target")[0];
+        	// new Drag(dragBox, dragTarget).startDrag();
+			Array.prototype.forEach.call($(".drag-box"), function(fb, i) {
+				new Drag(fb, $(".drag-target")[i]).startDrag();
+			});
+		}
+	</script>
+</body>
+</html>
